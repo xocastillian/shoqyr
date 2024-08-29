@@ -1,13 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { OrderItemService } from './order-item.service';
-import { Prisma } from '@prisma/client';
+import { CreateOrderItemDto, UpdateOrderItemDto } from './dto/order-item.dto';
 
 @Controller('order-item')
 export class OrderItemController {
   constructor(private readonly orderItemService: OrderItemService) {}
 
   @Post()
-  create(@Body() createOrderItemDto: Prisma.OrderItemCreateInput) {
+  create(@Body() createOrderItemDto: CreateOrderItemDto) {
     return this.orderItemService.createOrderItem(createOrderItemDto);
   }
 
@@ -22,7 +30,10 @@ export class OrderItemController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateOrderItemDto: Prisma.OrderItemUpdateInput) {
+  update(
+    @Param('id') id: string,
+    @Body() updateOrderItemDto: UpdateOrderItemDto,
+  ) {
     return this.orderItemService.updateOrderItem(+id, updateOrderItemDto);
   }
 

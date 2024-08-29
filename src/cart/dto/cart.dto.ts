@@ -8,12 +8,12 @@ import {
 export class CreateCartDto {
   @IsOptional()
   @IsNumber()
-  userId?: number;
+  userId: number;
 
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => CreateCartItemDto)
-  cartItems: CreateCartItemDto[];
+  cartItems?: CreateCartItemDto[];
 }
 
 export class UpdateCartDto {
