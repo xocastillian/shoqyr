@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateCartItemDto, UpdateCartItemDto } from './dto/cart-item.dto';
-import { CartItem } from '@prisma/client';
+import { CartItem, Prisma } from '@prisma/client';
 
 @Injectable()
 export class CartItemService {
   constructor(private prisma: PrismaService) {}
 
-  async createCartItem(dto: CreateCartItemDto): Promise<CartItem> {
+  async createCartItem(dto: Prisma.CartItemCreateInput): Promise<CartItem> {
     return this.prisma.cartItem.create({
       data: dto,
       include: {
@@ -36,7 +36,10 @@ export class CartItemService {
     });
   }
 
-  async updateCartItem(id: number, dto: UpdateCartItemDto): Promise<CartItem> {
+  async updateCartItem(
+    id: number,
+    dto: Prisma.CartItemUpdateInput,
+  ): Promise<CartItem> {
     return this.prisma.cartItem.update({
       where: { id },
       data: dto,

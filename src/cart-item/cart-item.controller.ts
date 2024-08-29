@@ -17,7 +17,12 @@ export class CartItemController {
 
   @Post()
   create(@Body(ValidationPipe) createCartItemDto: CreateCartItemDto) {
-    return this.cartItemService.createCartItem(createCartItemDto);
+    const { cartId, productId, ...data } = createCartItemDto;
+    return this.cartItemService.createCartItem({
+      ...data,
+      cart: { connect: { id: cartId } },
+      product: { connect: { id: productId } },
+    });
   }
 
   @Get()
