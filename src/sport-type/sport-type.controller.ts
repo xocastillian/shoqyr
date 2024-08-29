@@ -9,13 +9,14 @@ import {
 } from '@nestjs/common';
 import { SportTypeService } from './sport-type.service';
 import { Prisma } from '@prisma/client';
+import { CreateSportTypeDto, UpdateSportTypeDto } from './dto/sport-type.dto';
 
 @Controller('sport-type')
 export class SportTypeController {
   constructor(private readonly sportTypeService: SportTypeService) {}
 
   @Post()
-  create(@Body() createSportTypeDto: Prisma.SportTypeCreateInput) {
+  create(@Body() createSportTypeDto: CreateSportTypeDto) {
     return this.sportTypeService.createSportType(createSportTypeDto);
   }
 
@@ -32,7 +33,7 @@ export class SportTypeController {
   @Patch(':id')
   update(
     @Param('id') id: string,
-    @Body() updateSportTypeDto: Prisma.SportTypeUpdateInput,
+    @Body() updateSportTypeDto: UpdateSportTypeDto,
   ) {
     return this.sportTypeService.updateSportType(+id, updateSportTypeDto);
   }

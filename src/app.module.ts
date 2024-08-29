@@ -10,6 +10,7 @@ import { CartItemModule } from './cart-item/cart-item.module';
 import { ReviewModule } from './review/review.module';
 import { SportTypeModule } from './sport-type/sport-type.module';
 import { APP_PIPE } from '@nestjs/core';
+import { ShippingInfoModule } from './shipping-info/shipping-info.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { APP_PIPE } from '@nestjs/core';
     CartItemModule,
     ReviewModule,
     SportTypeModule,
+    ShippingInfoModule,
   ],
   providers: [
     {
