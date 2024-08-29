@@ -5,27 +5,27 @@ import {
   IsInt,
   Min,
   IsOptional,
-} from 'class-validator';
+} from 'class-validator'
 
 export class CreateOrderItemDto {
   @IsNotEmpty()
   @IsInt()
   @IsPositive()
   @Min(1)
-  quantity: number;
+  quantity: number
 
   @IsNotEmpty()
   @IsNumber()
   @IsPositive()
-  price: number;
+  price: number
 
   @IsNotEmpty()
   @IsInt()
-  orderId: number;
+  orderId: number
 
   @IsNotEmpty()
   @IsInt()
-  productId: number;
+  productId: number
 }
 
 export class UpdateOrderItemDto {
@@ -33,18 +33,18 @@ export class UpdateOrderItemDto {
   @IsInt()
   @IsPositive()
   @Min(1)
-  quantity?: number;
+  quantity?: number
 
   @IsOptional()
   @IsNumber()
   @IsPositive()
-  price?: number;
+  price?: number
 
   @IsOptional()
   @IsInt()
-  orderId?: number;
+  orderId?: number
 
   @IsOptional()
   @IsInt()
-  productId?: number;
+  productId?: number
 }

@@ -7,9 +7,9 @@ import {
   Param,
   Delete,
   ValidationPipe,
-} from '@nestjs/common';
-import { AddressService } from './address.service';
-import { CreateAddressDto, UpdateAddressDto } from './dto/adress.dto';
+} from '@nestjs/common'
+import { AddressService } from './address.service'
+import { CreateAddressDto, UpdateAddressDto } from './dto/adress.dto'
 
 @Controller('address')
 export class AddressController {
@@ -17,21 +17,21 @@ export class AddressController {
 
   @Post()
   create(@Body(ValidationPipe) createAddressDto: CreateAddressDto) {
-    const { userId, ...data } = createAddressDto;
+    const { userId, ...data } = createAddressDto
     return this.addressService.createAddress({
       ...data,
       user: { connect: { id: userId } },
-    });
+    })
   }
 
   @Get()
   findAll() {
-    return this.addressService.findAllAddresses();
+    return this.addressService.findAllAddresses()
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.addressService.findOneAddress(+id);
+    return this.addressService.findOneAddress(+id)
   }
 
   @Patch(':id')
@@ -39,11 +39,11 @@ export class AddressController {
     @Param('id') id: string,
     @Body(ValidationPipe) updateAddressDto: UpdateAddressDto,
   ) {
-    return this.addressService.updateAddress(+id, updateAddressDto);
+    return this.addressService.updateAddress(+id, updateAddressDto)
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.addressService.deleteAddress(+id);
+    return this.addressService.deleteAddress(+id)
   }
 }

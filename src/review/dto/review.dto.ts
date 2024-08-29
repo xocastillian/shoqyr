@@ -5,26 +5,26 @@ import {
   IsString,
   Min,
   Max,
-} from 'class-validator';
+} from 'class-validator'
 
 export class CreateReviewDto {
   @IsNotEmpty()
   @IsInt()
   @Min(1)
   @Max(5)
-  rating: number;
+  rating: number
 
   @IsOptional()
   @IsString()
-  comment?: string;
+  comment?: string
 
   @IsNotEmpty()
   @IsInt()
-  productId: number;
+  productId: number
 
   @IsNotEmpty()
   @IsInt()
-  userId: number;
+  userId: number
 }
 
 export class UpdateReviewDto {
@@ -32,17 +32,17 @@ export class UpdateReviewDto {
   @IsInt()
   @Min(1)
   @Max(5)
-  rating?: number;
+  rating?: number
 
   @IsOptional()
   @IsString()
-  comment?: string;
+  comment?: string
 
   @IsOptional()
   @IsInt()
-  productId?: number;
+  productId?: number
 
   @IsOptional()
   @IsInt()
-  userId?: number;
+  userId?: number
 }

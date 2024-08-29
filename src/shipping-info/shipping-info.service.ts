@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { Prisma, ShippingInfo } from '@prisma/client';
+import { Injectable } from '@nestjs/common'
+import { PrismaService } from 'src/prisma/prisma.service'
+import { Prisma, ShippingInfo } from '@prisma/client'
 
 @Injectable()
 export class ShippingInfoService {
@@ -11,15 +11,15 @@ export class ShippingInfoService {
   ): Promise<ShippingInfo> {
     return this.prisma.shippingInfo.create({
       data: createShippingInfoDto,
-    });
+    })
   }
 
   async findAll(): Promise<ShippingInfo[]> {
-    return this.prisma.shippingInfo.findMany();
+    return this.prisma.shippingInfo.findMany()
   }
 
   async findOne(id: number): Promise<ShippingInfo | null> {
-    return this.prisma.shippingInfo.findUnique({ where: { id } });
+    return this.prisma.shippingInfo.findUnique({ where: { id } })
   }
 
   async update(
@@ -29,10 +29,10 @@ export class ShippingInfoService {
     return this.prisma.shippingInfo.update({
       where: { id },
       data: updateShippingInfoDto,
-    });
+    })
   }
 
   async remove(id: number): Promise<ShippingInfo> {
-    return this.prisma.shippingInfo.delete({ where: { id } });
+    return this.prisma.shippingInfo.delete({ where: { id } })
   }
 }

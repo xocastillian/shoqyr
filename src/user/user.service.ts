@@ -1,13 +1,13 @@
-import { Injectable } from '@nestjs/common';
-import { Prisma, User } from '@prisma/client';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { Injectable } from '@nestjs/common'
+import { Prisma, User } from '@prisma/client'
+import { PrismaService } from 'src/prisma/prisma.service'
 
 const includes = {
   orders: true,
   addresses: true,
   reviews: true,
   cart: true,
-};
+}
 
 @Injectable()
 export class UserService {
@@ -19,7 +19,7 @@ export class UserService {
       include: {
         ...includes,
       },
-    });
+    })
   }
 
   async findAllUsers(): Promise<User[]> {
@@ -27,7 +27,7 @@ export class UserService {
       include: {
         ...includes,
       },
-    });
+    })
   }
 
   async findOneUser(id: number): Promise<User | null> {
@@ -36,7 +36,7 @@ export class UserService {
       include: {
         ...includes,
       },
-    });
+    })
   }
 
   async updateUser(id: number, data: Prisma.UserUpdateInput): Promise<User> {
@@ -46,7 +46,7 @@ export class UserService {
       include: {
         ...includes,
       },
-    });
+    })
   }
 
   async deleteUser(id: number): Promise<User> {
@@ -55,6 +55,6 @@ export class UserService {
       include: {
         ...includes,
       },
-    });
+    })
   }
 }

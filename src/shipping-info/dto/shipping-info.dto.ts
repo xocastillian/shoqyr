@@ -5,48 +5,48 @@ import {
   IsDateString,
   isNotEmpty,
   IsNotEmpty,
-} from 'class-validator';
+} from 'class-validator'
 
 export class CreateShippingInfoDto {
   @IsString()
   @IsNotEmpty()
-  trackingNumber: string;
+  trackingNumber: string
 
   @IsDateString()
   @IsNotEmpty()
-  shippingDate: Date;
+  shippingDate: Date
 
   @IsDateString()
   @IsNotEmpty()
-  deliveryDate: Date;
+  deliveryDate: Date
 
   @IsInt()
   @IsNotEmpty()
-  addressId: number;
+  addressId: number
 
   @IsInt()
   @IsNotEmpty()
-  orderId: number;
+  orderId: number
 }
 
 export class UpdateShippingInfoDto {
   @IsOptional()
   @IsString()
-  trackingNumber?: string;
+  trackingNumber?: string
 
   @IsOptional()
   @IsDateString()
-  shippingDate?: Date;
+  shippingDate?: Date
 
   @IsOptional()
   @IsDateString()
-  deliveryDate?: Date;
+  deliveryDate?: Date
 
   @IsOptional()
   @IsInt()
-  addressId?: number;
+  addressId?: number
 
   @IsOptional()
   @IsInt()
-  orderId?: number;
+  orderId?: number
 }

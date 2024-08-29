@@ -1,46 +1,46 @@
-import { IsNotEmpty, IsString, IsOptional, IsInt } from 'class-validator';
-import { CreateShippingInfoDto } from 'src/shipping-info/dto/shipping-info.dto';
+import { IsNotEmpty, IsString, IsOptional, IsInt } from 'class-validator'
+import { CreateShippingInfoDto } from 'src/shipping-info/dto/shipping-info.dto'
 
 export class CreateAddressDto {
   @IsNotEmpty()
   @IsString()
-  street: string;
+  street: string
 
   @IsNotEmpty()
   @IsString()
-  city: string;
+  city: string
 
   @IsNotEmpty()
   @IsString()
-  state: string;
+  state: string
 
   @IsNotEmpty()
   @IsString()
-  zipCode: string;
+  zipCode: string
 
   @IsOptional()
   @IsInt()
-  userId?: number;
+  userId?: number
 }
 
 export class UpdateAddressDto {
   @IsOptional()
   @IsString()
-  street?: string;
+  street?: string
 
   @IsOptional()
   @IsString()
-  city?: string;
+  city?: string
 
   @IsOptional()
   @IsString()
-  state?: string;
+  state?: string
 
   @IsOptional()
   @IsString()
-  zipCode?: string;
+  zipCode?: string
 
   @IsNotEmpty()
   @IsInt()
-  userId?: number;
+  userId?: number
 }

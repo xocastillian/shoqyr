@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateCartItemDto, UpdateCartItemDto } from './dto/cart-item.dto';
-import { CartItem, Prisma } from '@prisma/client';
+import { Injectable } from '@nestjs/common'
+import { PrismaService } from 'src/prisma/prisma.service'
+import { CreateCartItemDto, UpdateCartItemDto } from './dto/cart-item.dto'
+import { CartItem, Prisma } from '@prisma/client'
 
 @Injectable()
 export class CartItemService {
@@ -14,7 +14,7 @@ export class CartItemService {
         cart: true,
         product: true,
       },
-    });
+    })
   }
 
   async findAllCartItems(): Promise<CartItem[]> {
@@ -23,7 +23,7 @@ export class CartItemService {
         cart: true,
         product: true,
       },
-    });
+    })
   }
 
   async findOneCartItem(id: number): Promise<CartItem | null> {
@@ -33,7 +33,7 @@ export class CartItemService {
         cart: true,
         product: true,
       },
-    });
+    })
   }
 
   async updateCartItem(
@@ -47,10 +47,10 @@ export class CartItemService {
         cart: true,
         product: true,
       },
-    });
+    })
   }
 
   async deleteCartItem(id: number): Promise<CartItem> {
-    return this.prisma.cartItem.delete({ where: { id } });
+    return this.prisma.cartItem.delete({ where: { id } })
   }
 }

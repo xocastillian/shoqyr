@@ -6,9 +6,9 @@ import {
   Patch,
   Param,
   Delete,
-} from '@nestjs/common';
-import { OrderService } from './order.service';
-import { CreateOrderDto, UpdateOrderDto } from './dto/order.dto';
+} from '@nestjs/common'
+import { OrderService } from './order.service'
+import { CreateOrderDto, UpdateOrderDto } from './dto/order.dto'
 
 @Controller('orders')
 export class OrderController {
@@ -31,19 +31,19 @@ export class OrderController {
             })),
           }
         : undefined,
-    });
+    })
 
-    return order;
+    return order
   }
 
   @Get()
   async findAllOrders() {
-    return this.orderService.findAllOrders();
+    return this.orderService.findAllOrders()
   }
 
   @Get(':id')
   async findOrderById(@Param('id') id: string) {
-    return this.orderService.findOneOrder(+id);
+    return this.orderService.findOneOrder(+id)
   }
 
   @Patch(':id')
@@ -66,11 +66,11 @@ export class OrderController {
             })),
           }
         : undefined,
-    });
+    })
   }
 
   @Delete(':id')
   async removeOrder(@Param('id') id: string) {
-    return this.orderService.deleteOrder(+id);
+    return this.orderService.deleteOrder(+id)
   }
 }

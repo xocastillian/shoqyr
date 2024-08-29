@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { Prisma, Product } from '@prisma/client';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { Injectable } from '@nestjs/common'
+import { Prisma, Product } from '@prisma/client'
+import { PrismaService } from 'src/prisma/prisma.service'
 
 @Injectable()
 export class ProductService {
@@ -16,7 +16,7 @@ export class ProductService {
         categories: true,
         sportType: true,
       },
-    });
+    })
   }
 
   async findAllProducts(): Promise<Product[]> {
@@ -25,7 +25,7 @@ export class ProductService {
         categories: true,
         sportType: true,
       },
-    });
+    })
   }
 
   async findOneProduct(id: number): Promise<Product | null> {
@@ -35,7 +35,7 @@ export class ProductService {
         categories: true,
         sportType: true,
       },
-    });
+    })
   }
 
   async updateProduct(
@@ -49,10 +49,10 @@ export class ProductService {
         categories: true,
         sportType: true,
       },
-    });
+    })
   }
 
   async deleteProduct(id: number): Promise<Product> {
-    return this.prisma.product.delete({ where: { id } });
+    return this.prisma.product.delete({ where: { id } })
   }
 }

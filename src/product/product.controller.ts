@@ -7,9 +7,9 @@ import {
   Param,
   Delete,
   ValidationPipe,
-} from '@nestjs/common';
-import { ProductService } from './product.service';
-import { CreateProductDto, UpdateProductDto } from './dto/product.dto';
+} from '@nestjs/common'
+import { ProductService } from './product.service'
+import { CreateProductDto, UpdateProductDto } from './dto/product.dto'
 
 @Controller('product')
 export class ProductController {
@@ -17,21 +17,21 @@ export class ProductController {
 
   @Post()
   create(@Body(ValidationPipe) createProductDto: CreateProductDto) {
-    const { sportTypeId, ...data } = createProductDto;
+    const { sportTypeId, ...data } = createProductDto
     return this.productService.createProduct({
       ...data,
       sportType: { connect: { id: sportTypeId } },
-    });
+    })
   }
 
   @Get()
   findAll() {
-    return this.productService.findAllProducts();
+    return this.productService.findAllProducts()
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.productService.findOneProduct(+id);
+    return this.productService.findOneProduct(+id)
   }
 
   @Patch(':id')
@@ -39,11 +39,11 @@ export class ProductController {
     @Param('id') id: string,
     @Body(ValidationPipe) updateProductDto: UpdateProductDto,
   ) {
-    return this.productService.updateProduct(+id, updateProductDto);
+    return this.productService.updateProduct(+id, updateProductDto)
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.productService.deleteProduct(+id);
+    return this.productService.deleteProduct(+id)
   }
 }

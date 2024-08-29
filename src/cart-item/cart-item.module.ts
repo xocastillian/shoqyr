@@ -1,7 +1,7 @@
-import { Module } from '@nestjs/common';
-import { CartItemService } from './cart-item.service';
-import { CartItemController } from './cart-item.controller';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { Module } from '@nestjs/common'
+import { CartItemService } from './cart-item.service'
+import { CartItemController } from './cart-item.controller'
+import { PrismaService } from 'src/prisma/prisma.service'
 
 @Module({
   controllers: [CartItemController],

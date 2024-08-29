@@ -6,10 +6,10 @@ import {
   Patch,
   Param,
   Delete,
-} from '@nestjs/common';
-import { SportTypeService } from './sport-type.service';
-import { Prisma } from '@prisma/client';
-import { CreateSportTypeDto, UpdateSportTypeDto } from './dto/sport-type.dto';
+} from '@nestjs/common'
+import { SportTypeService } from './sport-type.service'
+import { Prisma } from '@prisma/client'
+import { CreateSportTypeDto, UpdateSportTypeDto } from './dto/sport-type.dto'
 
 @Controller('sport-type')
 export class SportTypeController {
@@ -17,17 +17,17 @@ export class SportTypeController {
 
   @Post()
   create(@Body() createSportTypeDto: CreateSportTypeDto) {
-    return this.sportTypeService.createSportType(createSportTypeDto);
+    return this.sportTypeService.createSportType(createSportTypeDto)
   }
 
   @Get()
   findAll() {
-    return this.sportTypeService.findAllSportTypes();
+    return this.sportTypeService.findAllSportTypes()
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.sportTypeService.findOneSportType(+id);
+    return this.sportTypeService.findOneSportType(+id)
   }
 
   @Patch(':id')
@@ -35,11 +35,11 @@ export class SportTypeController {
     @Param('id') id: string,
     @Body() updateSportTypeDto: UpdateSportTypeDto,
   ) {
-    return this.sportTypeService.updateSportType(+id, updateSportTypeDto);
+    return this.sportTypeService.updateSportType(+id, updateSportTypeDto)
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.sportTypeService.deleteSportType(+id);
+    return this.sportTypeService.deleteSportType(+id)
   }
 }

@@ -7,10 +7,10 @@ import {
   Param,
   Delete,
   ValidationPipe,
-} from '@nestjs/common';
-import { CartService } from './cart.service';
-import { Prisma } from '@prisma/client';
-import { CreateCartDto, UpdateCartDto } from './dto/cart.dto';
+} from '@nestjs/common'
+import { CartService } from './cart.service'
+import { Prisma } from '@prisma/client'
+import { CreateCartDto, UpdateCartDto } from './dto/cart.dto'
 
 @Controller('cart')
 export class CartController {
@@ -18,7 +18,7 @@ export class CartController {
 
   @Post()
   create(@Body(ValidationPipe) createCartDto: CreateCartDto) {
-    const { userId, cartItems } = createCartDto;
+    const { userId, cartItems } = createCartDto
     return this.cartService.createCart({
       user: { connect: { id: userId } },
       cartItems: {
@@ -27,17 +27,17 @@ export class CartController {
           product: { connect: { id: item.productId } },
         })),
       },
-    });
+    })
   }
 
   @Get()
   findAll() {
-    return this.cartService.findAllCarts();
+    return this.cartService.findAllCarts()
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.cartService.findOneCart(+id);
+    return this.cartService.findOneCart(+id)
   }
 
   @Patch(':id')
@@ -45,7 +45,7 @@ export class CartController {
     @Param('id') id: number,
     @Body(ValidationPipe) updateCartDto: UpdateCartDto,
   ) {
-    const { userId, cartItems } = updateCartDto;
+    const { userId, cartItems } = updateCartDto
 
     return this.cartService.updateCart(id, {
       ...(userId ? { user: { connect: { id: userId } } } : {}),
@@ -64,11 +64,11 @@ export class CartController {
             },
           }
         : {}),
-    });
+    })
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.cartService.deleteCart(+id);
+    return this.cartService.deleteCart(+id)
   }
 }

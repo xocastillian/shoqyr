@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { Prisma, Order } from '@prisma/client';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { Injectable } from '@nestjs/common'
+import { Prisma, Order } from '@prisma/client'
+import { PrismaService } from 'src/prisma/prisma.service'
 
 @Injectable()
 export class OrderService {
@@ -14,7 +14,7 @@ export class OrderService {
         shippingInfo: true,
         user: true,
       },
-    });
+    })
   }
 
   async findAllOrders(): Promise<Order[]> {
@@ -24,7 +24,7 @@ export class OrderService {
         shippingInfo: true,
         user: true,
       },
-    });
+    })
   }
 
   async findOneOrder(id: number): Promise<Order | null> {
@@ -35,7 +35,7 @@ export class OrderService {
         shippingInfo: true,
         user: true,
       },
-    });
+    })
   }
 
   async updateOrder(id: number, data: Prisma.OrderUpdateInput): Promise<Order> {
@@ -47,7 +47,7 @@ export class OrderService {
         shippingInfo: true,
         user: true,
       },
-    });
+    })
   }
 
   async deleteOrder(id: number): Promise<Order> {
@@ -58,6 +58,6 @@ export class OrderService {
         shippingInfo: true,
         user: true,
       },
-    });
+    })
   }
 }

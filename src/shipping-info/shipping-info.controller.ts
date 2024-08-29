@@ -7,12 +7,12 @@ import {
   Param,
   Delete,
   ValidationPipe,
-} from '@nestjs/common';
-import { ShippingInfoService } from './shipping-info.service';
+} from '@nestjs/common'
+import { ShippingInfoService } from './shipping-info.service'
 import {
   CreateShippingInfoDto,
   UpdateShippingInfoDto,
-} from './dto/shipping-info.dto';
+} from './dto/shipping-info.dto'
 
 @Controller('shipping-info')
 export class ShippingInfoController {
@@ -20,22 +20,22 @@ export class ShippingInfoController {
 
   @Post()
   create(@Body(ValidationPipe) createShippingInfoDto: CreateShippingInfoDto) {
-    const { orderId, addressId, ...data } = createShippingInfoDto;
+    const { orderId, addressId, ...data } = createShippingInfoDto
     return this.shippingInfoService.create({
       ...data,
       order: { connect: { id: orderId } },
       address: { connect: { id: addressId } },
-    });
+    })
   }
 
   @Get()
   findAll() {
-    return this.shippingInfoService.findAll();
+    return this.shippingInfoService.findAll()
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.shippingInfoService.findOne(+id);
+    return this.shippingInfoService.findOne(+id)
   }
 
   @Patch(':id')
@@ -43,11 +43,11 @@ export class ShippingInfoController {
     @Param('id') id: string,
     @Body(ValidationPipe) updateShippingInfoDto: UpdateShippingInfoDto,
   ) {
-    return this.shippingInfoService.update(+id, updateShippingInfoDto);
+    return this.shippingInfoService.update(+id, updateShippingInfoDto)
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.shippingInfoService.remove(+id);
+    return this.shippingInfoService.remove(+id)
   }
 }

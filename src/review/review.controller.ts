@@ -6,9 +6,9 @@ import {
   Patch,
   Param,
   Delete,
-} from '@nestjs/common';
-import { ReviewService } from './review.service';
-import { CreateReviewDto, UpdateReviewDto } from './dto/review.dto';
+} from '@nestjs/common'
+import { ReviewService } from './review.service'
+import { CreateReviewDto, UpdateReviewDto } from './dto/review.dto'
 
 @Controller('review')
 export class ReviewController {
@@ -16,31 +16,31 @@ export class ReviewController {
 
   @Post()
   create(@Body() createReviewDto: CreateReviewDto) {
-    const { productId, userId, ...data } = createReviewDto;
+    const { productId, userId, ...data } = createReviewDto
     return this.reviewService.createReview({
       ...data,
       product: { connect: { id: productId } },
       user: { connect: { id: userId } },
-    });
+    })
   }
 
   @Get()
   findAll() {
-    return this.reviewService.findAllReviews();
+    return this.reviewService.findAllReviews()
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.reviewService.findOneReview(+id);
+    return this.reviewService.findOneReview(+id)
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateReviewDto: UpdateReviewDto) {
-    return this.reviewService.updateReview(+id, updateReviewDto);
+    return this.reviewService.updateReview(+id, updateReviewDto)
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.reviewService.deleteReview(+id);
+    return this.reviewService.deleteReview(+id)
   }
 }

@@ -6,9 +6,9 @@ import {
   Patch,
   Param,
   Delete,
-} from '@nestjs/common';
-import { OrderItemService } from './order-item.service';
-import { CreateOrderItemDto, UpdateOrderItemDto } from './dto/order-item.dto';
+} from '@nestjs/common'
+import { OrderItemService } from './order-item.service'
+import { CreateOrderItemDto, UpdateOrderItemDto } from './dto/order-item.dto'
 
 @Controller('order-item')
 export class OrderItemController {
@@ -16,22 +16,22 @@ export class OrderItemController {
 
   @Post()
   create(@Body() createOrderItemDto: CreateOrderItemDto) {
-    const { orderId, productId, ...data } = createOrderItemDto;
+    const { orderId, productId, ...data } = createOrderItemDto
     return this.orderItemService.createOrderItem({
       ...data,
       order: { connect: { id: orderId } },
       product: { connect: { id: productId } },
-    });
+    })
   }
 
   @Get()
   findAll() {
-    return this.orderItemService.findAllOrderItems();
+    return this.orderItemService.findAllOrderItems()
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.orderItemService.findOneOrderItem(+id);
+    return this.orderItemService.findOneOrderItem(+id)
   }
 
   @Patch(':id')
@@ -39,11 +39,11 @@ export class OrderItemController {
     @Param('id') id: string,
     @Body() updateOrderItemDto: UpdateOrderItemDto,
   ) {
-    return this.orderItemService.updateOrderItem(+id, updateOrderItemDto);
+    return this.orderItemService.updateOrderItem(+id, updateOrderItemDto)
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.orderItemService.deleteOrderItem(+id);
+    return this.orderItemService.deleteOrderItem(+id)
   }
 }

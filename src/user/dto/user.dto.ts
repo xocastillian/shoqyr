@@ -5,42 +5,42 @@ import {
   IsOptional,
   IsDateString,
   MinLength,
-} from 'class-validator';
+} from 'class-validator'
 
 export class CreateUserDto {
   @IsNotEmpty()
   @IsString()
-  fullName: string;
+  fullName: string
 
   @IsNotEmpty()
   @IsEmail()
-  email: string;
+  email: string
 
   @IsNotEmpty()
   @IsString()
   @MinLength(6)
-  password: string;
+  password: string
 
   @IsOptional()
   @IsDateString()
-  registrationDate?: Date;
+  registrationDate?: Date
 }
 
 export class UpdateUserDto {
   @IsOptional()
   @IsString()
-  fullName?: string;
+  fullName?: string
 
   @IsOptional()
   @IsEmail()
-  email?: string;
+  email?: string
 
   @IsOptional()
   @IsString()
   @MinLength(6)
-  password?: string;
+  password?: string
 
   @IsOptional()
   @IsDateString()
-  registrationDate?: Date;
+  registrationDate?: Date
 }

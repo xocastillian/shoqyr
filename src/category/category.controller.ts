@@ -6,10 +6,10 @@ import {
   Patch,
   Param,
   Delete,
-} from '@nestjs/common';
-import { CategoryService } from './category.service';
-import { Prisma } from '@prisma/client';
-import { CreateCategoryDto, UpdateCategoryDto } from './dto/categoty.dto';
+} from '@nestjs/common'
+import { CategoryService } from './category.service'
+import { Prisma } from '@prisma/client'
+import { CreateCategoryDto, UpdateCategoryDto } from './dto/categoty.dto'
 
 @Controller('category')
 export class CategoryController {
@@ -17,17 +17,17 @@ export class CategoryController {
 
   @Post()
   create(@Body() createCategoryDto: CreateCategoryDto) {
-    return this.categoryService.createCategory(createCategoryDto);
+    return this.categoryService.createCategory(createCategoryDto)
   }
 
   @Get()
   findAll() {
-    return this.categoryService.findAllCategories();
+    return this.categoryService.findAllCategories()
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.categoryService.findOneCategory(+id);
+    return this.categoryService.findOneCategory(+id)
   }
 
   @Patch(':id')
@@ -35,11 +35,11 @@ export class CategoryController {
     @Param('id') id: string,
     @Body() updateCategoryDto: UpdateCategoryDto,
   ) {
-    return this.categoryService.updateCategory(+id, updateCategoryDto);
+    return this.categoryService.updateCategory(+id, updateCategoryDto)
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.categoryService.deleteCategory(+id);
+    return this.categoryService.deleteCategory(+id)
   }
 }

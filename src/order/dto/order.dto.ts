@@ -4,53 +4,53 @@ import {
   IsNumber,
   IsOptional,
   IsArray,
-} from 'class-validator';
+} from 'class-validator'
 import {
   CreateOrderItemDto,
   UpdateOrderItemDto,
-} from 'src/order-item/dto/order-item.dto';
+} from 'src/order-item/dto/order-item.dto'
 
 export class CreateOrderDto {
   @IsNotEmpty()
   @IsString()
-  status: string;
+  status: string
 
   @IsNotEmpty()
   @IsNumber()
-  totalAmount: number;
+  totalAmount: number
 
   @IsOptional()
   @IsNumber()
-  userId?: number;
+  userId?: number
 
   @IsOptional()
   @IsArray()
   @IsOptional()
-  orderItems?: CreateOrderItemDto[];
+  orderItems?: CreateOrderItemDto[]
 
   @IsOptional()
   @IsNumber()
-  shippingInfoId?: number;
+  shippingInfoId?: number
 }
 
 export class UpdateOrderDto {
   @IsOptional()
   @IsString()
-  status?: string;
+  status?: string
 
   @IsOptional()
   @IsNumber()
-  totalAmount?: number;
+  totalAmount?: number
 
   @IsOptional()
   @IsNumber()
-  userId?: number;
+  userId?: number
 
   @IsOptional()
   @IsArray()
-  orderItems?: UpdateOrderItemDto[];
+  orderItems?: UpdateOrderItemDto[]
 
   @IsOptional()
   @IsNumber()
-  shippingInfoId?: number;
+  shippingInfoId?: number
 }

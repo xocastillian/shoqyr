@@ -4,54 +4,54 @@ import {
   IsNumber,
   IsString,
   IsUrl,
-} from 'class-validator';
+} from 'class-validator'
 
 export class CreateProductDto {
   @IsNotEmpty()
   @IsString()
-  name: string;
+  name: string
 
   @IsNotEmpty()
   @IsNumber()
-  price: number;
+  price: number
 
   @IsNotEmpty()
   @IsNumber()
-  stock: number;
+  stock: number
 
   @IsOptional()
   @IsUrl()
-  imageUrl?: string;
+  imageUrl?: string
 
   @IsNotEmpty()
   @IsNumber()
-  sportTypeId?: number;
+  sportTypeId?: number
 
   @IsNotEmpty()
-  categories?: { connect: { id: number }[] };
+  categories?: { connect: { id: number }[] }
 }
 
 export class UpdateProductDto {
   @IsOptional()
   @IsString()
-  name?: string;
+  name?: string
 
   @IsOptional()
   @IsNumber()
-  price?: number;
+  price?: number
 
   @IsOptional()
   @IsNumber()
-  stock?: number;
+  stock?: number
 
   @IsOptional()
   @IsUrl()
-  imageUrl?: string;
+  imageUrl?: string
 
   @IsOptional()
   @IsNumber()
-  sportTypeId?: number;
+  sportTypeId?: number
 
   @IsOptional()
-  categories?: { connect: { id: number }[] };
+  categories?: { connect: { id: number }[] }
 }
