@@ -17,7 +17,11 @@ export class ProductController {
 
   @Post()
   create(@Body(ValidationPipe) createProductDto: CreateProductDto) {
-    return this.productService.createProduct(createProductDto);
+    const { sportTypeId, ...data } = createProductDto;
+    return this.productService.createProduct({
+      ...data,
+      sportType: { connect: { id: sportTypeId } },
+    });
   }
 
   @Get()

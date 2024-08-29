@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsString, IsOptional, IsInt } from 'class-validator';
+import { CreateShippingInfoDto } from 'src/shipping-info/dto/shipping-info.dto';
 
 export class CreateAddressDto {
   @IsNotEmpty()
@@ -17,9 +18,9 @@ export class CreateAddressDto {
   @IsString()
   zipCode: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsInt()
-  userId: number;
+  userId?: number;
 }
 
 export class UpdateAddressDto {

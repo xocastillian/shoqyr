@@ -4,6 +4,7 @@ import {
   IsString,
   IsOptional,
   IsDateString,
+  MinLength,
 } from 'class-validator';
 
 export class CreateUserDto {
@@ -17,6 +18,7 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   @IsString()
+  @MinLength(6)
   password: string;
 
   @IsOptional()
@@ -35,6 +37,7 @@ export class UpdateUserDto {
 
   @IsOptional()
   @IsString()
+  @MinLength(6)
   password?: string;
 
   @IsOptional()

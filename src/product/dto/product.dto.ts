@@ -25,9 +25,9 @@ export class CreateProductDto {
 
   @IsNotEmpty()
   @IsNumber()
-  sportTypeId: number;
+  sportTypeId?: number;
 
-  @IsOptional()
+  @IsNotEmpty()
   categories?: { connect: { id: number }[] };
 }
 

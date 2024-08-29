@@ -6,7 +6,7 @@ export class CreateCartItemDto {
   @Min(1)
   quantity: number;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsNumber()
   cartId: number;
 

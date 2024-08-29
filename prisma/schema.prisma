@@ -27,26 +27,26 @@ model Product {
   imageUrl    String?
   cartItems   CartItem[]
   orderItems  OrderItem[]
-  sportType   SportType?  @relation(fields: [sportTypeId], references: [id])
-  sportTypeId Int?
+  sportType   SportType   @relation(fields: [sportTypeId], references: [id])
+  sportTypeId Int
   reviews     Review[]
   categories  Category[]
 }
 
 model Cart {
   id        Int        @id @default(autoincrement())
-  user      User?      @relation(fields: [userId], references: [id])
   userId    Int?       @unique
+  user      User?      @relation(fields: [userId], references: [id])
   cartItems CartItem[]
 }
 
 model CartItem {
-  id        Int      @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   quantity  Int
-  cart      Cart?    @relation(fields: [cartId], references: [id])
   cartId    Int
-  product   Product? @relation(fields: [productId], references: [id])
   productId Int
+  cart      Cart    @relation(fields: [cartId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
 }
 
 model Order {
@@ -54,19 +54,19 @@ model Order {
   orderDate    DateTime      @default(now())
   status       String
   totalAmount  Float
+  userId       Int?
   user         User?         @relation(fields: [userId], references: [id])
-  userId       Int
   orderItems   OrderItem[]
   shippingInfo ShippingInfo?
 }
 
 model OrderItem {
-  id        Int      @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   quantity  Int
   price     Float
-  order     Order?   @relation(fields: [orderId], references: [id])
+  order     Order   @relation(fields: [orderId], references: [id])
   orderId   Int
-  product   Product? @relation(fields: [productId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
   productId Int
 }
 
@@ -76,8 +76,8 @@ model Address {
   city         String
   state        String
   zipCode      String
+  userId       Int?
   user         User?         @relation(fields: [userId], references: [id])
-  userId       Int
   shippingInfo ShippingInfo?
 }
 
@@ -94,22 +94,22 @@ model SportType {
 }
 
 model Review {
-  id        Int      @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   rating    Int
   comment   String?
-  product   Product? @relation(fields: [productId], references: [id])
   productId Int
-  user      User?    @relation(fields: [userId], references: [id])
   userId    Int
+  product   Product @relation(fields: [productId], references: [id])
+  user      User    @relation(fields: [userId], references: [id])
 }
 
 model ShippingInfo {
-  id             Int       @id @default(autoincrement())
-  trackingNumber String?
-  shippingDate   DateTime?
-  deliveryDate   DateTime?
-  address        Address?  @relation(fields: [addressId], references: [id])
-  addressId      Int       @unique
-  order          Order?    @relation(fields: [orderId], references: [id])
-  orderId        Int       @unique
+  id             Int      @id @default(autoincrement())
+  trackingNumber String
+  shippingDate   DateTime
+  deliveryDate   DateTime
+  addressId      Int      @unique
+  orderId        Int      @unique
+  address        Address  @relation(fields: [addressId], references: [id])
+  order          Order    @relation(fields: [orderId], references: [id])
 }

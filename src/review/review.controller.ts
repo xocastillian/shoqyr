@@ -8,7 +8,6 @@ import {
   Delete,
 } from '@nestjs/common';
 import { ReviewService } from './review.service';
-import { Prisma } from '@prisma/client';
 import { CreateReviewDto, UpdateReviewDto } from './dto/review.dto';
 
 @Controller('review')
@@ -17,7 +16,12 @@ export class ReviewController {
 
   @Post()
   create(@Body() createReviewDto: CreateReviewDto) {
-    return this.reviewService.createReview(createReviewDto);
+    const { productId, userId, ...data } = createReviewDto;
+    return this.reviewService.createReview({
+      ...data,
+      product: { connect: { id: productId } },
+      user: { connect: { id: userId } },
+    });
   }
 
   @Get()

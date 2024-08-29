@@ -1,22 +1,31 @@
-import { IsOptional, IsString, IsInt, IsDateString } from 'class-validator';
+import {
+  IsOptional,
+  IsString,
+  IsInt,
+  IsDateString,
+  isNotEmpty,
+  IsNotEmpty,
+} from 'class-validator';
 
 export class CreateShippingInfoDto {
-  @IsOptional()
   @IsString()
-  trackingNumber?: string;
+  @IsNotEmpty()
+  trackingNumber: string;
 
-  @IsOptional()
   @IsDateString()
-  shippingDate?: Date;
+  @IsNotEmpty()
+  shippingDate: Date;
 
-  @IsOptional()
   @IsDateString()
-  deliveryDate?: Date;
+  @IsNotEmpty()
+  deliveryDate: Date;
 
   @IsInt()
+  @IsNotEmpty()
   addressId: number;
 
   @IsInt()
+  @IsNotEmpty()
   orderId: number;
 }
 

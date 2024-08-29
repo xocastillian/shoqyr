@@ -10,13 +10,13 @@ import {
 import { OrderService } from './order.service';
 import { CreateOrderDto, UpdateOrderDto } from './dto/order.dto';
 
-@Controller('order')
+@Controller('orders')
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
   @Post()
-  create(@Body() createOrderDto: CreateOrderDto) {
-    return this.orderService.createOrder({
+  async createOrder(@Body() createOrderDto: CreateOrderDto) {
+    const order = await this.orderService.createOrder({
       status: createOrderDto.status,
       totalAmount: createOrderDto.totalAmount,
       user: createOrderDto.userId
@@ -32,51 +32,45 @@ export class OrderController {
           }
         : undefined,
     });
+
+    return order;
   }
 
   @Get()
-  findAll() {
+  async findAllOrders() {
     return this.orderService.findAllOrders();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOrderById(@Param('id') id: string) {
     return this.orderService.findOneOrder(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateOrderDto: UpdateOrderDto) {
+  async updateOrder(
+    @Param('id') id: string,
+    @Body() updateOrderDto: UpdateOrderDto,
+  ) {
     return this.orderService.updateOrder(+id, {
-      ...(updateOrderDto.status ? { status: updateOrderDto.status } : {}),
-      ...(updateOrderDto.totalAmount
-        ? { totalAmount: updateOrderDto.totalAmount }
-        : {}),
-      ...(updateOrderDto.userId
-        ? { user: { connect: { id: updateOrderDto.userId } } }
-        : {}),
-      ...(updateOrderDto.orderItems
+      status: updateOrderDto.status,
+      totalAmount: updateOrderDto.totalAmount,
+      user: updateOrderDto.userId
+        ? { connect: { id: updateOrderDto.userId } }
+        : undefined,
+      orderItems: updateOrderDto.orderItems
         ? {
-            orderItems: {
-              upsert: updateOrderDto.orderItems.map((item) => ({
-                where: { id: item.productId },
-                update: {
-                  quantity: item.quantity,
-                  price: item.price,
-                },
-                create: {
-                  quantity: item.quantity,
-                  price: item.price,
-                  product: { connect: { id: item.productId } },
-                },
-              })),
-            },
+            create: updateOrderDto.orderItems.map((item) => ({
+              quantity: item.quantity,
+              price: item.price,
+              product: { connect: { id: item.productId } },
+            })),
           }
-        : {}),
+        : undefined,
     });
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  async removeOrder(@Param('id') id: string) {
     return this.orderService.deleteOrder(+id);
   }
 }

@@ -20,7 +20,12 @@ export class ShippingInfoController {
 
   @Post()
   create(@Body(ValidationPipe) createShippingInfoDto: CreateShippingInfoDto) {
-    return this.shippingInfoService.create(createShippingInfoDto);
+    const { orderId, addressId, ...data } = createShippingInfoDto;
+    return this.shippingInfoService.create({
+      ...data,
+      order: { connect: { id: orderId } },
+      address: { connect: { id: addressId } },
+    });
   }
 
   @Get()

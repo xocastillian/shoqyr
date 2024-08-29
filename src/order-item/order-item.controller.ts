@@ -16,7 +16,12 @@ export class OrderItemController {
 
   @Post()
   create(@Body() createOrderItemDto: CreateOrderItemDto) {
-    return this.orderItemService.createOrderItem(createOrderItemDto);
+    const { orderId, productId, ...data } = createOrderItemDto;
+    return this.orderItemService.createOrderItem({
+      ...data,
+      order: { connect: { id: orderId } },
+      product: { connect: { id: productId } },
+    });
   }
 
   @Get()

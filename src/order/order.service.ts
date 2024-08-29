@@ -7,25 +7,57 @@ export class OrderService {
   constructor(private prisma: PrismaService) {}
 
   async createOrder(data: Prisma.OrderCreateInput): Promise<Order> {
-    return this.prisma.order.create({ data });
+    return this.prisma.order.create({
+      data,
+      include: {
+        orderItems: true,
+        shippingInfo: true,
+        user: true,
+      },
+    });
   }
 
   async findAllOrders(): Promise<Order[]> {
-    return this.prisma.order.findMany();
+    return this.prisma.order.findMany({
+      include: {
+        orderItems: true,
+        shippingInfo: true,
+        user: true,
+      },
+    });
   }
 
   async findOneOrder(id: number): Promise<Order | null> {
-    return this.prisma.order.findUnique({ where: { id } });
+    return this.prisma.order.findUnique({
+      where: { id },
+      include: {
+        orderItems: true,
+        shippingInfo: true,
+        user: true,
+      },
+    });
   }
 
   async updateOrder(id: number, data: Prisma.OrderUpdateInput): Promise<Order> {
     return this.prisma.order.update({
       where: { id },
       data,
+      include: {
+        orderItems: true,
+        shippingInfo: true,
+        user: true,
+      },
     });
   }
 
   async deleteOrder(id: number): Promise<Order> {
-    return this.prisma.order.delete({ where: { id } });
+    return this.prisma.order.delete({
+      where: { id },
+      include: {
+        orderItems: true,
+        shippingInfo: true,
+        user: true,
+      },
+    });
   }
 }
