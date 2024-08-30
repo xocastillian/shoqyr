@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+	ValidationPipe,
 } from '@nestjs/common'
 import { OrderItemService } from './order-item.service'
 import { CreateOrderItemDto, UpdateOrderItemDto } from './dto/order-item.dto'
@@ -15,7 +16,7 @@ export class OrderItemController {
   constructor(private readonly orderItemService: OrderItemService) {}
 
   @Post()
-  create(@Body() createOrderItemDto: CreateOrderItemDto) {
+  create(@Body(ValidationPipe) createOrderItemDto: CreateOrderItemDto) {
     const { orderId, productId, ...data } = createOrderItemDto
     return this.orderItemService.createOrderItem({
       ...data,
@@ -37,7 +38,7 @@ export class OrderItemController {
   @Patch(':id')
   update(
     @Param('id') id: string,
-    @Body() updateOrderItemDto: UpdateOrderItemDto,
+    @Body(ValidationPipe) updateOrderItemDto: UpdateOrderItemDto,
   ) {
     return this.orderItemService.updateOrderItem(+id, updateOrderItemDto)
   }

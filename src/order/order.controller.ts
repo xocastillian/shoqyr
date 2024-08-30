@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+	ValidationPipe,
 } from '@nestjs/common'
 import { OrderService } from './order.service'
 import { CreateOrderDto, UpdateOrderDto } from './dto/order.dto'
@@ -15,7 +16,7 @@ export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
   @Post()
-  async createOrder(@Body() createOrderDto: CreateOrderDto) {
+  async createOrder(@Body(ValidationPipe) createOrderDto: CreateOrderDto) {
     const order = await this.orderService.createOrder({
       status: createOrderDto.status,
       totalAmount: createOrderDto.totalAmount,
@@ -49,7 +50,7 @@ export class OrderController {
   @Patch(':id')
   async updateOrder(
     @Param('id') id: string,
-    @Body() updateOrderDto: UpdateOrderDto,
+    @Body(ValidationPipe) updateOrderDto: UpdateOrderDto,
   ) {
     return this.orderService.updateOrder(+id, {
       status: updateOrderDto.status,

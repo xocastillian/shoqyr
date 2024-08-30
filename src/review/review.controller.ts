@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+	ValidationPipe,
 } from '@nestjs/common'
 import { ReviewService } from './review.service'
 import { CreateReviewDto, UpdateReviewDto } from './dto/review.dto'
@@ -15,7 +16,7 @@ export class ReviewController {
   constructor(private readonly reviewService: ReviewService) {}
 
   @Post()
-  create(@Body() createReviewDto: CreateReviewDto) {
+  create(@Body(ValidationPipe) createReviewDto: CreateReviewDto) {
     const { productId, userId, ...data } = createReviewDto
     return this.reviewService.createReview({
       ...data,
@@ -35,7 +36,7 @@ export class ReviewController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateReviewDto: UpdateReviewDto) {
+  update(@Param('id') id: string, @Body(ValidationPipe) updateReviewDto: UpdateReviewDto) {
     return this.reviewService.updateReview(+id, updateReviewDto)
   }
 

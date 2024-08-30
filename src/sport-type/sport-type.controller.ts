@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+	ValidationPipe,
 } from '@nestjs/common'
 import { SportTypeService } from './sport-type.service'
 import { Prisma } from '@prisma/client'
@@ -16,7 +17,7 @@ export class SportTypeController {
   constructor(private readonly sportTypeService: SportTypeService) {}
 
   @Post()
-  create(@Body() createSportTypeDto: CreateSportTypeDto) {
+  create(@Body(ValidationPipe) createSportTypeDto: CreateSportTypeDto) {
     return this.sportTypeService.createSportType(createSportTypeDto)
   }
 
@@ -33,7 +34,7 @@ export class SportTypeController {
   @Patch(':id')
   update(
     @Param('id') id: string,
-    @Body() updateSportTypeDto: UpdateSportTypeDto,
+    @Body(ValidationPipe) updateSportTypeDto: UpdateSportTypeDto,
   ) {
     return this.sportTypeService.updateSportType(+id, updateSportTypeDto)
   }
