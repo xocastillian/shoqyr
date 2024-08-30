@@ -27,7 +27,7 @@ model Product {
   imageUrl    String?
   cartItems   CartItem[]
   orderItems  OrderItem[]
-  sportType   SportType   @relation(fields: [sportTypeId], references: [id])
+  sportType   SportType   @relation(fields: [sportTypeId], references: [id], onDelete: Cascade)
   sportTypeId Int
   reviews     Review[]
   categories  Category[]
@@ -36,7 +36,7 @@ model Product {
 model Cart {
   id        Int        @id @default(autoincrement())
   userId    Int?       @unique
-  user      User?      @relation(fields: [userId], references: [id])
+  user      User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
   cartItems CartItem[]
 }
 
@@ -45,8 +45,8 @@ model CartItem {
   quantity  Int
   cartId    Int
   productId Int
-  cart      Cart    @relation(fields: [cartId], references: [id])
-  product   Product @relation(fields: [productId], references: [id])
+  cart      Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
 
 model Order {
@@ -55,7 +55,7 @@ model Order {
   status       String
   totalAmount  Float
   userId       Int?
-  user         User?         @relation(fields: [userId], references: [id])
+  user         User?         @relation(fields: [userId], references: [id], onDelete: Cascade)
   orderItems   OrderItem[]
   shippingInfo ShippingInfo?
 }
@@ -64,9 +64,9 @@ model OrderItem {
   id        Int     @id @default(autoincrement())
   quantity  Int
   price     Float
-  order     Order   @relation(fields: [orderId], references: [id])
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   orderId   Int
-  product   Product @relation(fields: [productId], references: [id])
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId Int
 }
 
@@ -77,7 +77,7 @@ model Address {
   state        String
   zipCode      String
   userId       Int?
-  user         User?         @relation(fields: [userId], references: [id])
+  user         User?         @relation(fields: [userId], references: [id], onDelete: Cascade)
   shippingInfo ShippingInfo?
 }
 
@@ -99,8 +99,8 @@ model Review {
   comment   String?
   productId Int
   userId    Int
-  product   Product @relation(fields: [productId], references: [id])
-  user      User    @relation(fields: [userId], references: [id])
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model ShippingInfo {
@@ -110,6 +110,6 @@ model ShippingInfo {
   deliveryDate   DateTime
   addressId      Int      @unique
   orderId        Int      @unique
-  address        Address  @relation(fields: [addressId], references: [id])
-  order          Order    @relation(fields: [orderId], references: [id])
+  address        Address  @relation(fields: [addressId], references: [id], onDelete: Cascade)
+  order          Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
 }

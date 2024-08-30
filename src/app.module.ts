@@ -11,6 +11,8 @@ import { ReviewModule } from './review/review.module'
 import { SportTypeModule } from './sport-type/sport-type.module'
 import { APP_PIPE } from '@nestjs/core'
 import { ShippingInfoModule } from './shipping-info/shipping-info.module'
+import { AuthModule } from './auth/auth.module'
+import { ConfigModule } from '@nestjs/config'
 
 @Module({
   imports: [
@@ -25,6 +27,10 @@ import { ShippingInfoModule } from './shipping-info/shipping-info.module'
     ReviewModule,
     SportTypeModule,
     ShippingInfoModule,
+    AuthModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
   ],
   providers: [
     {
