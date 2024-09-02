@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Cart" ALTER COLUMN "token" DROP NOT NULL;

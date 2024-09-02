@@ -40,7 +40,7 @@ export class UpdateAddressDto {
   @IsString()
   zipCode?: string
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsInt()
   userId?: number
 }

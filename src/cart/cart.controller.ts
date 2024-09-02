@@ -9,7 +9,6 @@ import {
   ValidationPipe,
 } from '@nestjs/common'
 import { CartService } from './cart.service'
-import { Prisma } from '@prisma/client'
 import { CreateCartDto, UpdateCartDto } from './dto/cart.dto'
 
 @Controller('cart')
@@ -18,16 +17,7 @@ export class CartController {
 
   @Post()
   create(@Body(ValidationPipe) createCartDto: CreateCartDto) {
-    const { userId, cartItems } = createCartDto
-    return this.cartService.createCart({
-      user: { connect: { id: userId } },
-      cartItems: {
-        create: cartItems.map((item) => ({
-          quantity: item.quantity,
-          product: { connect: { id: item.productId } },
-        })),
-      },
-    })
+    return this.cartService.createOrUpdateCart(createCartDto)
   }
 
   @Get()
@@ -58,7 +48,6 @@ export class CartController {
                 create: {
                   quantity: item.quantity,
                   product: { connect: { id: item.productId } },
-                  cart: { connect: { id: id } },
                 },
               })),
             },

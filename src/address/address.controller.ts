@@ -20,7 +20,7 @@ export class AddressController {
     const { userId, ...data } = createAddressDto
     return this.addressService.createAddress({
       ...data,
-      user: { connect: { id: userId } },
+      ...(userId && { user: { connect: { id: userId } } }),
     })
   }
 
