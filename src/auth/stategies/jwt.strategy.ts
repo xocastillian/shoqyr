@@ -18,10 +18,15 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     })
   }
 
-  async validate(user: User) {
+  async validate(user: any) {
     const _user = await this.userService.findOneUserByEmail(user.email)
 
-    if (!user) throw new UnauthorizedException('Invalid token')
-    return { id: _user.id, email: _user.email, fullName: _user.fullName }
+    if (!_user) throw new UnauthorizedException('Invalid token')
+    return {
+      id: _user.id,
+      email: _user.email,
+      fullName: _user.fullName,
+      role: _user.role,
+    }
   }
 }

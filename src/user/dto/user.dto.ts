@@ -1,3 +1,4 @@
+import { Role } from '@prisma/client'
 import {
   IsNotEmpty,
   IsEmail,
@@ -5,6 +6,8 @@ import {
   IsOptional,
   IsDateString,
   MinLength,
+  isEnum,
+  IsEnum,
 } from 'class-validator'
 
 export class CreateUserDto {
@@ -24,6 +27,10 @@ export class CreateUserDto {
   @IsOptional()
   @IsDateString()
   registrationDate?: Date
+
+  @IsOptional()
+  @IsEnum(Role)
+  role?: Role
 }
 
 export class UpdateUserDto {
@@ -43,4 +50,8 @@ export class UpdateUserDto {
   @IsOptional()
   @IsDateString()
   registrationDate?: Date
+
+  @IsOptional()
+  @IsEnum(Role)
+  role?: Role
 }
