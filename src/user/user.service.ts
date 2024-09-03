@@ -8,7 +8,6 @@ import { JwtService } from '@nestjs/jwt'
 export class UserService {
   private readonly includes: Prisma.UserInclude = {
     orders: true,
-    addresses: true,
     reviews: true,
     cart: true,
   }

@@ -11,7 +11,6 @@ export class OrderService {
       data,
       include: {
         orderItems: true,
-        shippingInfo: true,
         user: true,
       },
     })
@@ -21,7 +20,6 @@ export class OrderService {
     return this.prisma.order.findMany({
       include: {
         orderItems: true,
-        shippingInfo: true,
         user: true,
       },
     })
@@ -32,7 +30,6 @@ export class OrderService {
       where: { id },
       include: {
         orderItems: true,
-        shippingInfo: true,
         user: true,
       },
     })
@@ -44,7 +41,6 @@ export class OrderService {
       data,
       include: {
         orderItems: true,
-        shippingInfo: true,
         user: true,
       },
     })
@@ -55,7 +51,6 @@ export class OrderService {
       where: { id },
       include: {
         orderItems: true,
-        shippingInfo: true,
         user: true,
       },
     })
